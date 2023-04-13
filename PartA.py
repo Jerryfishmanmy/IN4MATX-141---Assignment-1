@@ -1,12 +1,13 @@
-
+import sys
 import re
+import time
 
 # The runtime complexity of this function is O(N), where N is the number of words in the text file. the function
 # is iterating through each lines in the text file, which is O(1) each time, ending up being O(N).
 def tokenize(TextFilePath) -> list:
     with open(TextFilePath, "r") as f:
         lines = f.read()
-    tokens = re.findall(r"\b\w+\b", lines.lower())
+    tokens = re.findall(r"\b[a-zA-Z0-9]+\b", lines.lower())
     return tokens
 
 
@@ -33,6 +34,18 @@ def printFrequency(frequency):
     for word, count in sort_by_frequency.items():
         print(f"{word} -> {count}")
 
-token = tokenize("text1.txt")
-frequency = computeWordFrequencies(token)
-printFrequency(frequency)
+if __name__ == "__main__":
+    text = sys.argv[1] #https://www.geeksforgeeks.org/how-to-use-sys-argv-in-python/
+    start_time = time.time()
+    token = tokenize(text)
+    frequency = computeWordFrequencies(token)
+    printFrequency(frequency)
+    end_time = time.time()
+    execution_time = end_time - start_time
+    print(f"Execution time: {execution_time} seconds")
+
+
+
+
+
+
