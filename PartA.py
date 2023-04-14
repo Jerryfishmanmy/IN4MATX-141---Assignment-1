@@ -36,16 +36,9 @@ def printFrequency(frequency):
 
 if __name__ == "__main__":
     text = sys.argv[1] #https://www.geeksforgeeks.org/how-to-use-sys-argv-in-python/
-    start_time = time.time()
-    token = tokenize(text)
-    frequency = computeWordFrequencies(token)
-    printFrequency(frequency)
-    end_time = time.time()
-    execution_time = end_time - start_time
-    print(f"Execution time: {execution_time} seconds")
-
-
-
-
-
-
+    try:
+        token = tokenize(text)
+        frequency = computeWordFrequencies(token)
+        printFrequency(frequency)
+    except FileNotFoundError:
+        print("File doesn't exist")
