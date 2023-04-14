@@ -1,5 +1,4 @@
 import PartA as a
-import time
 import sys
 
 
@@ -12,17 +11,18 @@ import sys
 # which takes O(N) time, where N is the number of words in common_words. In conclusion, the average runtime
 # complexity of this program is O(N).
 def inCommon(file1, file2) -> int:
-    common_words = set()
-    store1 = set(a.tokenize(file1))
-    store2 = set(a.tokenize(file2))
-    for word in store1:
-        if word in store2:
+    common_words = set() # creates a set to store unique words
+    store1 = set(a.tokenize(file1)) # tokenizes first text file
+    store2 = set(a.tokenize(file2)) # tokenizes second text file
+    for word in store1:  # loops through all the words in store1
+        if word in store2: # if the word from store1 is also in store 2, the word will be added to common_words
             common_words.add(word)
+    print("Intersected words:")
     for word in common_words:
-        print(word)
-    return len(common_words)
+        print(word) # loops through the set and print all the words
+    return len(common_words) # return the amount of duplicated words between two text files
 
 if __name__ == "__main__":
     text1 = sys.argv[1] #https://www.geeksforgeeks.org/how-to-use-sys-argv-in-python/
     text2 = sys.argv[2]
-    print(inCommon(text1, text2))
+    print(f"Total Intersection of two files: {inCommon(text1, text2)}")
